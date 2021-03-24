@@ -9,7 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CodingApplication">
-        <activity android:name=".MainActivity">
+        <activity android:name=".questionsPage"></activity>
+        <activity
+            android:name=".questionsMenu"
+            android:label="Questions Menu" />
+        <activity
+            android:name=".MainActivity"
+            android:label="Programming Fundamentals 1">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

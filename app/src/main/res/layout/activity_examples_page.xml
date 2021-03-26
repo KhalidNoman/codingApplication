@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".examplesPage">
+
+    <TextView
+        android:id="@+id/exaOuter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Outer will appear here?"
+        android:clickable="false"
+        android:focusable="true"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/exaEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="388dp"
+        android:clickable="false"
+        android:focusable="true"
+        android:text="End will appear here"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/exaValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="65dp"
+        android:ems="3"
+        android:inputType="number"
+        app:layout_constraintStart_toEndOf="@+id/exaVariableType"
+        app:layout_constraintTop_toBottomOf="@+id/exaOuter" />
+
+    <EditText
+        android:id="@+id/exaVariableType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="65dp"
+        android:ems="6"
+        android:inputType="text"
+        android:hint="variable type"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/exaOuter" />
+
+    <TextView
+        android:id="@+id/exaVariableName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="var1 = "
+        app:layout_constraintEnd_toStartOf="@+id/exaValue"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/exaVariableType"
+        app:layout_constraintTop_toBottomOf="@+id/exaOuter" />
+
+    <TextView
+        android:id="@+id/exaSemi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=";"
+        android:layout_marginTop="80dp"
+        app:layout_constraintStart_toEndOf="@+id/exaValue"
+        app:layout_constraintTop_toBottomOf="@+id/exaOuter"/>
+
+    <TextView
+        android:id="@+id/exaOperation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="150dp"
+        android:text="Operation appears here"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/exaOuter" />
+
+    <TextView
+        android:id="@+id/exaPrint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="200dp"
+        android:text="System.out.println(&quot; The value of var1 is: &quot; + var1);"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/exaOuter" />
+
+    <TextView
+        android:id="@+id/exaOutputTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="424dp"
+        android:text="Output:"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/exaOuter" />
+
+    <TextView
+        android:id="@+id/exaOutput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Output will appear here"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/exaOutputTitle" />
+
+    <Button
+        android:id="@+id/exaBtnExecute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginBottom="16dp"
+        android:text="Execute"
+        app:layout_constraintBottom_toTopOf="@+id/exaOutputTitle"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

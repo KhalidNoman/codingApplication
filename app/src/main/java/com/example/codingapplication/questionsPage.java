@@ -22,6 +22,9 @@ public class questionsPage extends AppCompatActivity {
     private Button btnQstSubmit;
     private RadioButton qstChoice;
 
+    private questionData myQuestion;
+    private String[] myChoices;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +38,7 @@ public class questionsPage extends AppCompatActivity {
         qstChoice3 = findViewById(R.id.qstChoice3);
         qstChoice4 = findViewById(R.id.qstChoice4);
         btnQstSubmit = findViewById(R.id.btnQstSubmit);
+/*
 
         qstText.setText("Select the data type that would best represent the data: ");
         qstCode.setText("... x = 312.245");
@@ -42,11 +46,24 @@ public class questionsPage extends AppCompatActivity {
         qstChoice2.setText("double");
         qstChoice3.setText("boolean");
         qstChoice4.setText("char");
+*/
+        String[] myChoices = {"int", "double", "boolean", "char"};
+        questionData myQuestion = new questionData("Select the data type that would best represent the data: ",
+                                    "... x = 312.245", myChoices, "double");
+        setQuestion(myQuestion);
+
+        qstChoices.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                qstChoice = findViewById(qstChoices.getCheckedRadioButtonId());
+                qstCode.setText(qstChoice.getText().toString() + " x = 312.245");
+            }
+        });
 
         btnQstSubmit.setOnClickListener((view) -> {
             try {
                 qstChoice = findViewById(qstChoices.getCheckedRadioButtonId());
-                if (qstChoice.getText().toString().equals("double"))
+                if (qstChoice.getText().toString().equals(myQuestion.getAnswer()))
                     Toast.makeText(questionsPage.this, "Correct: The value is of the floating point type", Toast.LENGTH_LONG).show();
                 else
                     Toast.makeText(questionsPage.this, "Incorrect please try again", Toast.LENGTH_LONG).show();
@@ -55,5 +72,14 @@ public class questionsPage extends AppCompatActivity {
             }
         });
 
+    }
+
+    protected void setQuestion(questionData qst1){
+        qstText.setText(qst1.getQuestion());
+        qstCode.setText(qst1.getCode());
+        qstChoice1.setText(qst1.getChoices()[0]);
+        qstChoice2.setText(qst1.getChoices()[1]);
+        qstChoice3.setText(qst1.getChoices()[2]);
+        qstChoice4.setText(qst1.getChoices()[3]);
     }
 }

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/background">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".examplesMenu"
+        android:orientation="vertical"
+        >
+
+        <Button
+            android:id="@+id/btnPrimitivesE"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:text="Primitive Data Types" />
+        <Button
+            android:id="@+id/btnObjectsE"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:text="Objects (Strings)" />
+        <Button
+            android:id="@+id/btnConditionalsE"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:text="Conditionals" />
+        <Button
+            android:id="@+id/btnLoopsE"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:text="Loops" />
+
+    </LinearLayout>
+</ScrollView>

@@ -12,7 +12,6 @@ public class MainActivity extends AppCompatActivity {
 
     private Button btnQuestions;
     private Button btnExamples;
-    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +21,12 @@ public class MainActivity extends AppCompatActivity {
         btnQuestions = (Button) findViewById(R.id.btnQuestions);
         btnQuestions.setOnClickListener((view) -> {
             Intent intent = new Intent(MainActivity.this, questionsMenu.class);
+            startActivity(intent);
+        });
+
+        btnExamples = (Button) findViewById(R.id.btnExamples);
+        btnExamples.setOnClickListener((view) -> {
+            Intent intent = new Intent(MainActivity.this, examplesMenu.class);
             startActivity(intent);
         });
     }

@@ -6,14 +6,18 @@ import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
 import android.content.ClipData;
+import android.content.ClipDescription;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class examples_Conditionals extends AppCompatActivity {
 
@@ -27,7 +31,7 @@ public class examples_Conditionals extends AppCompatActivity {
 
 
     private Switch exaCondSwitch;
-    private CardView exaCondContainer;
+    private LinearLayout exaCondContainer;
 
     /*
     private final class MyTouchListener implements View.OnTouchListener{
@@ -60,7 +64,7 @@ public class examples_Conditionals extends AppCompatActivity {
         exaDragCase = (TextView) findViewById(R.id.exaDragCase);
         exaDragBreak = (TextView) findViewById(R.id.exaDragBreak);
 
-        exaCondContainer = (CardView) findViewById(R.id.exaCondContainer);
+        exaCondContainer = (LinearLayout) findViewById(R.id.exaCondContainer);
 
         exaDragIf.setOnTouchListener((view, motionEvent) -> {
             if(motionEvent.getAction() == MotionEvent.ACTION_DOWN){
@@ -130,6 +134,42 @@ public class examples_Conditionals extends AppCompatActivity {
         });
 
 
+        exaCondContainer.setOnDragListener(new View.OnDragListener() {
+            @Override
+            public boolean onDrag(View view, DragEvent dragEvent) {
+                final int action = dragEvent.getAction();
+                switch(action){
+                    case DragEvent.ACTION_DRAG_STARTED:
+                        if(dragEvent.getClipDescription().hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN)){
+                            view.setBackgroundColor(Color.YELLOW);
+                            view.invalidate();
+                            return true;
+                        }
+                        return false;
+                    case DragEvent.ACTION_DRAG_ENTERED:
+                        view.setBackgroundColor(Color.BLUE);
+                        view.invalidate();
+                        return false;
+                    case DragEvent.ACTION_DRAG_EXITED:
+                        view.setBackgroundColor(Color.GRAY);
+                        view.invalidate();
+                        return true;
+                    case DragEvent.ACTION_DRAG_ENDED:
+                        view.setBackgroundColor(Color.WHITE);
+                        view.invalidate();
+                        return true;
+                    case DragEvent.ACTION_DROP:
+                        ClipData.Item item = dragEvent.getClipData().getItemAt(0);
+                        CharSequence dragData = item.getText();
+                        Toast.makeText(examples_Conditionals.this, dragData, Toast.LENGTH_LONG).show();
+                        view.setBackgroundColor(Color.WHITE);
+                        view.invalidate();
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        });
 
        /* exaCondContainer.setOnDragListener(((view, dragEvent) -> {
             int action = dragEvent.getAction();

@@ -9,13 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CodingApplication">
-        <activity android:name=".examplesPage"
-            android:label="Examples Page"
-            ></activity>
-        <activity android:name=".examplesMenu"
-            android:label="Examples Menu"/>
-        <activity android:name=".questionsPage"
-            android:label="Questions Page"/>
+        <activity android:name=".examples_Conditionals"></activity>
+        <activity
+            android:name=".examplesPage"
+            android:label="Examples Page" />
+        <activity
+            android:name=".examplesMenu"
+            android:label="Examples Menu" />
+        <activity
+            android:name=".questionsPage"
+            android:label="Questions Page" />
         <activity
             android:name=".questionsMenu"
             android:label="Questions Menu" />

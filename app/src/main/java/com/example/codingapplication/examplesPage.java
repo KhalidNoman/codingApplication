@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -14,7 +17,7 @@ import org.w3c.dom.Text;
 public class examplesPage extends AppCompatActivity {
 
     private EditText exaValue;
-    private EditText exaVariableType;
+    private Spinner exaVariableType;
     private TextView exaOperation;
     private TextView exaPrint;
     private TextView exaOutput;
@@ -42,6 +45,10 @@ public class examplesPage extends AppCompatActivity {
         exaOuter.setText(myExample.getOuter());
         exaEnd.setText(myExample.getEnd());
 
+        String[] items = {"int","long","float","double","String"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        exaVariableType.setAdapter(adapter);
+
         exaValue.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable s) {}
@@ -57,11 +64,16 @@ public class examplesPage extends AppCompatActivity {
         });
 
         exaBtnExecute.setOnClickListener((view) ->{
-            if(exaVariableType.getText().toString().equals("double"))
+            if(exaVariableType.getSelectedItem().toString().equals("double") || exaVariableType.getSelectedItem().toString().equals("float"))
                 exaOutput.setText("The value of var1 is: " + Double.parseDouble(exaValue.getText().toString())*2);
-            else if(exaVariableType.getText().toString().equals("int"))
-                exaOutput.setText("The value of var1 is: " + Integer.parseInt(exaValue.getText().toString())*2);
-            else
+            else if(exaVariableType.getSelectedItem().toString().equals("int") || exaVariableType.getSelectedItem().toString().equals("long")) {
+                Integer val, pos;
+                if(exaValue.getText().toString().contains(".")) {
+                    pos = exaValue.getText().toString().indexOf(".");
+                    val = Integer.parseInt(exaValue.getText().toString().substring(0, pos));
+                } else val = Integer.parseInt(exaValue.getText().toString());
+                exaOutput.setText("The value of var1 is: " + val * 2);
+            }else
                 exaOutput.setText("Syntax error!");
         });
     }

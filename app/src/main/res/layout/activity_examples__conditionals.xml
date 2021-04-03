@@ -104,18 +104,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/exaCondContainer"
+    <ScrollView
+        android:id="@+id/exaScroller"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="150dp"
-        android:layout_marginBottom="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="45dp"
-        android:orientation="vertical">
+        android:layout_below="@+id/exaDragCase"
+        android:paddingTop="15dp"    >
 
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/exaCondContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </ScrollView>
 
 
 

@@ -7,13 +7,13 @@
     tools:context=".examples_Conditionals">
 
     <TextView
-        android:id="@+id/exaDragIf"
+        android:id="@+id/exaDragFor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginLeft="16dp"
-        android:ems="3"
-        android:text="if"
+        android:ems="4"
+        android:text="for"
         android:textSize="25sp"
         android:textColor="@color/black"
         android:background="#CCCCCC"
@@ -23,13 +23,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/exaDragElseIf"
+        android:id="@+id/exaDragWhile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_centerHorizontal="true"
-        android:ems="3"
-        android:text="else if"
+        android:ems="4"
+        android:text="while"
         android:textSize="25sp"
         android:textColor="@color/black"
         android:background="#CCCCCC"
@@ -39,63 +39,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/exaDragElse"
+        android:id="@+id/exaDragDoWhile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_alignParentRight="true"
         android:layout_marginRight="16dp"
-        android:ems="3"
-        android:text="else"
-        android:textSize="25sp"
-        android:textColor="@color/black"
-        android:background="#CCCCCC"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.95"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/exaDragSwitch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:layout_marginLeft="16dp"
-        android:ems="3"
-        android:text="switch"
-        android:textSize="25sp"
-        android:textColor="@color/black"
-        android:background="#CCCCCC"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/exaDragCase"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:layout_centerHorizontal="true"
-        android:ems="3"
-        android:text="case"
-        android:textSize="25sp"
-        android:textColor="@color/black"
-        android:background="#CCCCCC"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/exaDragBreak"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="16dp"
-        android:ems="3"
-        android:text="break"
+        android:ems="4"
+        android:text="do while"
         android:textSize="25sp"
         android:textColor="@color/black"
         android:background="#CCCCCC"
@@ -108,8 +59,8 @@
         android:id="@+id/exaScroller"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="100dp"
-        android:paddingTop="15dp"    >
+        android:layout_below="@+id/exaDragCase"
+        android:paddingTop="15dp"  >
 
         <LinearLayout
             android:id="@+id/exaCondContainer"

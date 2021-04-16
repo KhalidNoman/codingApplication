@@ -4,13 +4,20 @@ public class questionData {
     private String question;
     private String code;
     private String[] choices;
-    private String answer;
+    private int answer;
 
-    public questionData(String question, String code, String[] choices, String answer) {
+    public questionData(String question, String code, String[] choices, int answer) {
         this.question = question;
         this.code = code;
         this.choices = choices;
         this.answer = answer;
+    }
+
+    public questionData() {
+        this.question = "";
+        this.code = "";
+        this.choices = new String[]{"", "", "", ""};
+        this.answer = 0;
     }
 
     public String getQuestion() {
@@ -37,11 +44,11 @@ public class questionData {
         this.choices = choices;
     }
 
-    public String getAnswer() {
+    public int getAnswer() {
         return answer;
     }
 
-    public void setAnswer(String answer) {
+    public void setAnswer(int answer) {
         this.answer = answer;
     }
 }

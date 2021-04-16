@@ -55,36 +55,30 @@ public class examples_Conditionals extends AppCompatActivity {
 
         exaDragIf.setOnTouchListener((view, motionEvent) -> {
             if(motionEvent.getAction() == MotionEvent.ACTION_DOWN){
-                Log.d("Dragging ", exaDragIf.getText().toString());
                 ClipData data = ClipData.newPlainText("If","if");
                 View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
                 view.startDrag(data, shadowBuilder, view, 0);
                 dragged = "if";
-                //view.setVisibility(View.INVISIBLE);
                 return true;
             } else {return false;}
         });
 
         exaDragElseIf.setOnTouchListener((view, motionEvent) -> {
             if(motionEvent.getAction() == MotionEvent.ACTION_DOWN){
-                Log.d("Dragging ", exaDragElseIf.getText().toString());
                 ClipData data = ClipData.newPlainText("Else if","else if");
                 View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
                 view.startDrag(data, shadowBuilder, view, 0);
                 dragged = "else if";
-                //view.setVisibility(View.INVISIBLE);
                 return true;
             } else {return false;}
         });
 
         exaDragElse.setOnTouchListener((view, motionEvent) -> {
             if(motionEvent.getAction() == MotionEvent.ACTION_DOWN){
-                Log.d("Dragging ", exaDragElse.getText().toString());
                 ClipData data = ClipData.newPlainText("Else","else");
                 View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
                 view.startDrag(data, shadowBuilder, view, 0);
                 dragged = "else";
-                //view.setVisibility(View.INVISIBLE);
                 return true;
             } else {return false;}
         });
@@ -92,36 +86,30 @@ public class examples_Conditionals extends AppCompatActivity {
 
         exaDragSwitch.setOnTouchListener((view, motionEvent) -> {
             if(motionEvent.getAction() == MotionEvent.ACTION_DOWN){
-                Log.d("Dragging ", exaDragSwitch.getText().toString());
                 ClipData data = ClipData.newPlainText("Switch","switch");
                 View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
                 view.startDrag(data, shadowBuilder, view, 0);
                 dragged = "switch";
-                //view.setVisibility(View.INVISIBLE);
                 return true;
             } else {return false;}
         });
 
         exaDragCase.setOnTouchListener((view, motionEvent) -> {
             if(motionEvent.getAction() == MotionEvent.ACTION_DOWN){
-                Log.d("Dragging ", exaDragCase.getText().toString());
                 ClipData data = ClipData.newPlainText("Case","case");
                 View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
                 view.startDrag(data, shadowBuilder, view, 0);
                 dragged = "case";
-                //view.setVisibility(View.INVISIBLE);
                 return true;
             } else {return false;}
         });
 
         exaDragBreak.setOnTouchListener((view, motionEvent) -> {
             if(motionEvent.getAction() == MotionEvent.ACTION_DOWN){
-                Log.d("Dragging ", exaDragBreak.getText().toString());
                 ClipData data = ClipData.newPlainText("Break","break");
                 View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
                 view.startDrag(data, shadowBuilder, view, 0);
                 dragged = "break";
-                //view.setVisibility(View.INVISIBLE);
                 return true;
             } else {return false;}
         });
@@ -141,9 +129,9 @@ public class examples_Conditionals extends AppCompatActivity {
                         return false;
                     case DragEvent.ACTION_DRAG_ENTERED:
                         //String temp = dragEvent.getClipData().getItemAt(0).getText().toString();
-                        if((!hasSwitch && (dragged.equals("case") || dragged.equals("break"))) || (!hasIf && (dragged.equals("else") || dragged.equals("else if"))))
+                        if((!hasSwitch && (dragged.equals("case") || dragged.equals("break"))) || (!hasIf && (dragged.equals("else") || dragged.equals("else if")))) {
                             view.setBackgroundColor(Color.RED);
-                        else
+                        }else
                             view.setBackgroundColor(Color.GREEN);
                         view.invalidate();
                         return false;
@@ -160,6 +148,8 @@ public class examples_Conditionals extends AppCompatActivity {
                         CharSequence dragData = item.getText();
                         Toast.makeText(examples_Conditionals.this, dragData.toString(), Toast.LENGTH_LONG).show();
                         view.setBackgroundColor(Color.WHITE);
+
+                        //Ifs 
                         if(dragData.toString().equals("if")) {
                             hasIf = true;
                             TextView tv=new TextView(examples_Conditionals.this);
@@ -167,13 +157,26 @@ public class examples_Conditionals extends AppCompatActivity {
                             tv.setTextSize(30);
                             exaCondContainer.addView(tv);
 
-                           /* TextView tv2=new TextView(examples_Conditionals.this);
-                            tv2.setText("}");
-                            tv2.setTop(500);
-                            tv2.setTextSize(30);
-                            exaCondContainer.addView(tv2);*/
-                        } else if (dragData.toString().equals("switch")) {
+                            ((ViewGroup) exaDragSwitch.getParent()).removeView(exaDragSwitch);
+                            ((ViewGroup) exaDragCase.getParent()).removeView(exaDragCase);
+                            ((ViewGroup) exaDragBreak.getParent()).removeView(exaDragBreak);
+                        } else if(dragData.toString().equals("else if")){
+
+                        } else if(dragData.toString().equals("else")){
+
+                        }
+                        //Switches
+                        else if (dragData.toString().equals("switch")) {
                             hasSwitch = true;
+
+                            ((ViewGroup) exaDragIf.getParent()).removeView(exaDragIf);
+                            ((ViewGroup) exaDragElseIf.getParent()).removeView(exaDragElseIf);
+                            ((ViewGroup) exaDragElse.getParent()).removeView(exaDragElse);
+
+                        }else if (dragData.toString().equals("case")) {
+
+                        }else if (dragData.toString().equals("break")) {
+
                         }
                         view.invalidate();
                         return true;
@@ -183,28 +186,7 @@ public class examples_Conditionals extends AppCompatActivity {
             }
         });
 
-       /* exaCondContainer.setOnDragListener(((view, dragEvent) -> {
-            int action = dragEvent.getAction();
-            switch(dragEvent.getAction()) {
-                case DragEvent.ACTION_DRAG_STARTED:
-                    break;
-                case DragEvent.ACTION_DRAG_EXITED:
-                    exaCondContainer.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_200));
-                    break;
-                case DragEvent.ACTION_DROP:
-                    View v = (View) dragEvent.getLocalState();
-                    ViewGroup owner = (ViewGroup) view.getParent();
-                    owner.removeView(v);
-                    exaCondContainer.addView(v);
-                    v.setVisibility(View.VISIBLE);
-                    break;
-                case DragEvent.ACTION_DRAG_ENDED:
-                    exaCondContainer.setBackgroundColor(ContextCompat.getColor(this, R.color.white));
-                default:
-                    break;
-            }
-            return true;
-        }));*/
+
     }
 
 

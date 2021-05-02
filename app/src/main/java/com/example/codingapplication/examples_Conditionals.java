@@ -26,6 +26,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Arrays;
+
 public class examples_Conditionals extends AppCompatActivity {
 
     private TextView exaDragIf;
@@ -34,7 +36,7 @@ public class examples_Conditionals extends AppCompatActivity {
 
     private TextView exaDragSwitch;
     private TextView exaDragCase;
-    private TextView exaDragBreak;
+    private TextView exaDragDefault;
 
     private ScrollView exaScroller;
     private LinearLayout exaCondContainer;
@@ -42,7 +44,7 @@ public class examples_Conditionals extends AppCompatActivity {
     private Button exaCondButton;
     private TextView exaCondResult;
 
-    boolean hasIf, hasSwitch = false;
+    boolean hasIf, hasSwitch, hasDefault, hasElse = false;
     String dragged = "";
 
     @SuppressLint("ClickableViewAccessibility")
@@ -57,7 +59,7 @@ public class examples_Conditionals extends AppCompatActivity {
 
         exaDragSwitch = (TextView) findViewById(R.id.exaDragSwitch);
         exaDragCase = (TextView) findViewById(R.id.exaDragCase);
-        exaDragBreak = (TextView) findViewById(R.id.exaDragBreak);
+        exaDragDefault = (TextView) findViewById(R.id.exaDragDefault);
 
         exaScroller = (ScrollView) findViewById(R.id.exaScroller);
         exaCondContainer = (LinearLayout) findViewById(R.id.exaCondContainer);
@@ -66,7 +68,8 @@ public class examples_Conditionals extends AppCompatActivity {
         exaCondResult = (TextView) findViewById(R.id.exaCondResult);
 
 
-        final String[] userVal = {"0","0","0","0"};
+        final String[] userVal = {"0","0","0","0","0","0","0"};
+        final int[] cases = {0};
 
         exaDragIf.setOnTouchListener((view, motionEvent) -> {
             if(motionEvent.getAction() == MotionEvent.ACTION_DOWN){
@@ -119,12 +122,12 @@ public class examples_Conditionals extends AppCompatActivity {
             } else {return false;}
         });
 
-        exaDragBreak.setOnTouchListener((view, motionEvent) -> {
+        exaDragDefault.setOnTouchListener((view, motionEvent) -> {
             if(motionEvent.getAction() == MotionEvent.ACTION_DOWN){
-                ClipData data = ClipData.newPlainText("Break","break");
+                ClipData data = ClipData.newPlainText("Default","default");
                 View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
                 view.startDrag(data, shadowBuilder, view, 0);
-                dragged = "break";
+                dragged = "default";
                 return true;
             } else {return false;}
         });
@@ -171,27 +174,19 @@ public class examples_Conditionals extends AppCompatActivity {
                             AlertDialog.Builder userAlert = new AlertDialog.Builder(examples_Conditionals.this);
                             userAlert.setTitle("Create your conditional!");
 
-                            TextView tv=new TextView(examples_Conditionals.this);
-                            //tv.setText("int x = " + userVal[0] + "\n" + dragData.toString().concat(" (x >" + userVal[1] + ") {"));
-                            tv.setTextSize(20);
-                            exaCondContainer.addView(tv);
-
                             Context con = examples_Conditionals.this;
                             LinearLayout conLayout = new LinearLayout(con);
                             conLayout.setOrientation(LinearLayout.VERTICAL);
 
                             EditText valueHolder = new EditText(con);
                             valueHolder.setHint("Variable value");
+                            valueHolder.setInputType(InputType.TYPE_NUMBER_FLAG_SIGNED | InputType.TYPE_CLASS_NUMBER);
                             conLayout.addView(valueHolder);
 
                             EditText ifPart = new EditText(con);
                             ifPart.setHint("if condition");
+                            ifPart.setInputType(InputType.TYPE_NUMBER_FLAG_SIGNED | InputType.TYPE_CLASS_NUMBER);
                             conLayout.addView(ifPart);
-
-                            /*EditText elseIfPart = new EditText(con);
-                            elseIfPart.setHint("else if condition");
-                            conLayout.addView(elseIfPart);
-                            */
 
                             userAlert.setView(conLayout);
                             userAlert.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
@@ -199,12 +194,17 @@ public class examples_Conditionals extends AppCompatActivity {
                                 public void onClick(DialogInterface dialog, int which) {
                                     userVal[0] = valueHolder.getText().toString();
                                     userVal[1] = ifPart.getText().toString();
+                                    if(userVal[0].length() != 0 && userVal[1].length() != 0) {
+                                        TextView tv=new TextView(examples_Conditionals.this);
+                                        tv.setTextSize(20);
+                                        exaCondContainer.addView(tv);
 
-                                    tv.setText("int x = " + userVal[0] + ";\n" + dragData.toString().concat(" (x <" + userVal[1] + ") {\n" + "\t\tSystem.out.println(\"if satisfied\");\n}"));
-                                    ((ViewGroup) exaDragIf.getParent()).removeView(exaDragIf);
-                                    ((ViewGroup) exaDragSwitch.getParent()).removeView(exaDragSwitch);
-                                    ((ViewGroup) exaDragCase.getParent()).removeView(exaDragCase);
-                                    ((ViewGroup) exaDragBreak.getParent()).removeView(exaDragBreak);
+                                        tv.setText("int x = " + userVal[0] + ";\n" + dragData.toString().concat(" (x >" + userVal[1] + ") {\n" + "\t\tSystem.out.println(\"if satisfied\");\n}"));
+                                        ((ViewGroup) exaDragIf.getParent()).removeView(exaDragIf);
+                                        ((ViewGroup) exaDragSwitch.getParent()).removeView(exaDragSwitch);
+                                        ((ViewGroup) exaDragCase.getParent()).removeView(exaDragCase);
+                                        ((ViewGroup) exaDragDefault.getParent()).removeView(exaDragDefault);
+                                    }
                                 }
                             });
                             userAlert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -216,32 +216,90 @@ public class examples_Conditionals extends AppCompatActivity {
                             userAlert.show();
 
                         } else if(dragData.toString().equals("else if")){
+                            if(hasIf) {
+                                AlertDialog.Builder userAlert = new AlertDialog.Builder(examples_Conditionals.this);
+                                userAlert.setTitle("Create your conditional!");
+
+                                Context con = examples_Conditionals.this;
+                                LinearLayout conLayout = new LinearLayout(con);
+                                conLayout.setOrientation(LinearLayout.VERTICAL);
+
+                                EditText elseIfPart = new EditText(con);
+                                elseIfPart.setHint("else if condition");
+                                elseIfPart.setInputType(InputType.TYPE_NUMBER_FLAG_SIGNED | InputType.TYPE_CLASS_NUMBER);
+                                conLayout.addView(elseIfPart);
+
+
+                                userAlert.setView(conLayout);
+                                userAlert.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        userVal[2] = elseIfPart.getText().toString();
+                                        if (userVal[2].length() != 0) {
+                                            TextView tv = new TextView(examples_Conditionals.this);
+                                            tv.setTextSize(20);
+                                            exaCondContainer.addView(tv);
+                                            tv.setText(dragData.toString().concat(" (x <" + userVal[2] + ") {\n" + "\t\tSystem.out.println(\"else if satisfied\");\n}"));
+                                            ((ViewGroup) exaDragElseIf.getParent()).removeView(exaDragElseIf);
+                                        }
+                                    }
+                                });
+                                userAlert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                    }
+                                });
+                                userAlert.show();
+                            }
+
+                        } else if(dragData.toString().equals("else")){
+                            if(hasIf) {
+                                hasElse = true;
+                                AlertDialog.Builder userAlert = new AlertDialog.Builder(examples_Conditionals.this);
+                                userAlert.setTitle("Create your conditional!");
+
+                                TextView tv = new TextView(examples_Conditionals.this);
+                                tv.setText(dragData.toString().concat("{\n" + "\t\tSystem.out.println(\"else satisfied\");\n}"));
+                                tv.setTextSize(20);
+                                exaCondContainer.addView(tv);
+
+                                ((ViewGroup) exaDragElse.getParent()).removeView(exaDragElse);
+                            }
+                        }
+                        //Switches
+                        else if (dragData.toString().equals("switch")) {
+                            hasSwitch = true;
 
                             AlertDialog.Builder userAlert = new AlertDialog.Builder(examples_Conditionals.this);
                             userAlert.setTitle("Create your conditional!");
-
-                            TextView tv=new TextView(examples_Conditionals.this);
-                            tv.setTextSize(20);
-                            exaCondContainer.addView(tv);
 
                             Context con = examples_Conditionals.this;
                             LinearLayout conLayout = new LinearLayout(con);
                             conLayout.setOrientation(LinearLayout.VERTICAL);
 
-                            EditText elseIfPart = new EditText(con);
-                            elseIfPart.setHint("else if condition");
-                            elseIfPart.setInputType(InputType.TYPE_CLASS_NUMBER);
-                            conLayout.addView(elseIfPart);
+                            EditText valueHolder = new EditText(con);
+                            valueHolder.setHint("Variable value");
+                            valueHolder.setInputType(InputType.TYPE_NUMBER_FLAG_SIGNED | InputType.TYPE_CLASS_NUMBER);
+                            conLayout.addView(valueHolder);
 
 
                             userAlert.setView(conLayout);
                             userAlert.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    userVal[2] = elseIfPart.getText().toString();
+                                    userVal[0] = valueHolder.getText().toString();
+                                    if(userVal[0].length() != 0) {
+                                        TextView tv=new TextView(examples_Conditionals.this);
+                                        tv.setTextSize(20);
+                                        exaCondContainer.addView(tv);
 
-                                    tv.setText(dragData.toString().concat(" (x >" + userVal[2] + ") {\n" + "\t\tSystem.out.println(\"else if satisfied\");\n}"));
-                                    ((ViewGroup) exaDragElseIf.getParent()).removeView(exaDragElseIf);
+                                        tv.setText("int x = " + userVal[0] + ";\n" + dragData.toString().concat(" (x) {"));
+                                        ((ViewGroup) exaDragSwitch.getParent()).removeView(exaDragSwitch);
+                                        ((ViewGroup) exaDragIf.getParent()).removeView(exaDragIf);
+                                        ((ViewGroup) exaDragElse.getParent()).removeView(exaDragElse);
+                                        ((ViewGroup) exaDragElseIf.getParent()).removeView(exaDragElseIf);
+                                    }
                                 }
                             });
                             userAlert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -252,32 +310,70 @@ public class examples_Conditionals extends AppCompatActivity {
                             });
                             userAlert.show();
 
-
-
-
-                        } else if(dragData.toString().equals("else")){
-                            AlertDialog.Builder userAlert = new AlertDialog.Builder(examples_Conditionals.this);
-                            userAlert.setTitle("Create your conditional!");
-
-                            TextView tv=new TextView(examples_Conditionals.this);
-                            tv.setText(dragData.toString().concat("{\n" + "\t\tSystem.out.println(\"else satisfied\");\n}"));
-                            tv.setTextSize(20);
-                            exaCondContainer.addView(tv);
-
-                            ((ViewGroup) exaDragElse.getParent()).removeView(exaDragElse);
-                        }
-                        //Switches
-                        else if (dragData.toString().equals("switch")) {
-                            hasSwitch = true;
-
-                            ((ViewGroup) exaDragIf.getParent()).removeView(exaDragIf);
-                            ((ViewGroup) exaDragElseIf.getParent()).removeView(exaDragElseIf);
-                            ((ViewGroup) exaDragElse.getParent()).removeView(exaDragElse);
-
                         }else if (dragData.toString().equals("case")) {
+                            if(hasSwitch) {
+                                cases[0]++;
+                                AlertDialog.Builder userAlert = new AlertDialog.Builder(examples_Conditionals.this);
+                                userAlert.setTitle("Create your conditional!");
 
-                        }else if (dragData.toString().equals("break")) {
 
+                                Context con = examples_Conditionals.this;
+                                LinearLayout conLayout = new LinearLayout(con);
+                                conLayout.setOrientation(LinearLayout.VERTICAL);
+
+                                EditText valueHolder = new EditText(con);
+                                valueHolder.setHint("Case value");
+                                valueHolder.setInputType(InputType.TYPE_NUMBER_FLAG_SIGNED | InputType.TYPE_CLASS_NUMBER);
+                                conLayout.addView(valueHolder);
+
+
+                                userAlert.setView(conLayout);
+                                userAlert.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        if(valueHolder.getText().toString().length() != 0) {
+                                            boolean cont = true;
+                                            for (int i = 1; i < cases[0]; i++) {
+                                                if (userVal[i].equalsIgnoreCase(valueHolder.getText().toString())) {
+                                                    cases[0]--;
+                                                    cont = false;
+                                                }
+                                            }
+                                            if (cont) {
+                                                TextView tv = new TextView(examples_Conditionals.this);
+                                                tv.setTextSize(20);
+                                                exaCondContainer.addView(tv);
+                                                userVal[cases[0]] = valueHolder.getText().toString();
+                                                tv.setText("\t\t" + dragData.toString().concat(" " + userVal[cases[0]] + ":\n" + "\t\t\tSystem.out.println(\"Case " + userVal[cases[0]] + " satisfied\");\n\t\t\tbreak;"));
+                                            }
+                                        }
+                                    }
+                                });
+                                userAlert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        cases[0]--;
+                                    }
+                                });
+                                userAlert.show();
+                                if(cases[0] >= 6)
+                                    ((ViewGroup) exaDragCase.getParent()).removeView(exaDragCase);
+                            } else
+                                Toast.makeText(examples_Conditionals.this, "Please add a switch first", Toast.LENGTH_SHORT).show();
+
+                        }else if (dragData.toString().equals("default")) {
+                            if(hasSwitch) {
+                                hasDefault = true;
+                                TextView tv = new TextView(examples_Conditionals.this);
+                                tv.setTextSize(20);
+                                exaCondContainer.addView(tv);
+                                tv.setText("\t\t" + dragData.toString().concat(":\n \t\t\tSystem.out.println(\"Default satisfied\");\n" +
+                                        "\t\t\tbreak;\n}"));
+                                if(cases[0] < 6)
+                                    ((ViewGroup) exaDragCase.getParent()).removeView(exaDragCase);
+                                ((ViewGroup) exaDragDefault.getParent()).removeView(exaDragDefault);
+                            } else
+                                Toast.makeText(examples_Conditionals.this, "Please add a switch first", Toast.LENGTH_SHORT).show();
                         }
                         view.invalidate();
                         return true;
@@ -288,13 +384,26 @@ public class examples_Conditionals extends AppCompatActivity {
         });
 
         exaCondButton.setOnClickListener((view) -> {
-            if(Integer.parseInt(userVal[0]) > Integer.parseInt(userVal[1])){
-                exaCondResult.setText("if satisfied");
-            } else if (Integer.parseInt(userVal[0]) < Integer.parseInt(userVal[2])){
-                exaCondResult.setText("else if satisfied");
-            } else {
-                exaCondResult.setText("else satisfied");
-            }
+            if(hasIf) {
+                if (Integer.parseInt(userVal[0]) > Integer.parseInt(userVal[1])) {
+                    exaCondResult.setText("if satisfied");
+                } else if (Integer.parseInt(userVal[0]) < Integer.parseInt(userVal[2])) {
+                    exaCondResult.setText("else if satisfied");
+                } else {
+                    if(hasElse)
+                        exaCondResult.setText("else satisfied");
+                }
+            } else if (hasSwitch){
+                for(int i = 1; i < userVal.length; i++){
+                    if(userVal[0].equalsIgnoreCase(userVal[i])){
+                        exaCondResult.setText("case "+ userVal[i] + " satisfied");
+                        break;
+                    } else
+                        if(hasDefault)
+                            exaCondResult.setText("default satisfied");
+                }
+            } else
+                Toast.makeText(examples_Conditionals.this, "Please add a conditional", Toast.LENGTH_SHORT).show();
         });
 
 

@@ -88,14 +88,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/exaDragBreak"
+        android:id="@+id/exaDragDefault"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
         android:layout_alignParentRight="true"
         android:layout_marginRight="16dp"
         android:ems="3"
-        android:text="break"
+        android:text="default"
         android:textSize="25sp"
         android:textColor="@color/black"
         android:background="#CCCCCC"

@@ -9,9 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CodingApplication">
-        <activity android:name=".examples_Loops"></activity>
-        <activity android:name=".examples_Strings" />
-        <activity android:name=".examples_Conditionals" />
+        <activity
+            android:name=".examples_Loops"
+            android:label="Loops Example" />
+        <activity
+            android:name=".examples_Strings"
+            android:label="Strings Example"/>
+        <activity
+            android:name=".examples_Conditionals"
+            android:label="Conditionals Example"/>
         <activity
             android:name=".examplesPage"
             android:label="Examples Page" />

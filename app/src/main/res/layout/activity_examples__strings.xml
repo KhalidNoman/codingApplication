@@ -4,16 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".examplesPage">
+    tools:context=".examplesPage"
+    android:layout_marginLeft="10dp">
 
     <TextView
         android:id="@+id/exaOuterStrings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Outer will appear here?"
+        android:text="public static main void(String[] args){"
         android:clickable="false"
         android:focusable="true"
-        android:textSize="25sp"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,8 +26,8 @@
         android:layout_marginBottom="388dp"
         android:clickable="false"
         android:focusable="true"
-        android:text="End will appear here"
-        android:textSize="25sp"
+        android:text="}"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -34,11 +35,10 @@
         android:id="@+id/exaValueStrings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
         android:layout_marginTop="65dp"
-        android:ems="3"
-        android:inputType="numberDecimal"
+        android:ems="9"
         app:layout_constraintStart_toEndOf="@+id/exaVariableTypeStrings"
         app:layout_constraintTop_toBottomOf="@+id/exaOuterStrings" />
 
@@ -46,8 +46,8 @@
         android:id="@+id/exaVariableTypeStrings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginLeft="50dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
         android:layout_marginTop="80dp"
         android:text="String "
         app:layout_constraintStart_toStartOf="parent"
@@ -78,8 +78,8 @@
         android:id="@+id/exaOperationStrings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginLeft="50dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
         android:layout_marginTop="150dp"
         android:text="Operation appears here"
         app:layout_constraintStart_toStartOf="parent"
@@ -89,12 +89,12 @@
         android:id="@+id/exaPrintStrings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginLeft="50dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
         android:layout_marginTop="200dp"
-        android:text="System.out.println(&quot; The value of var1 is: &quot; + var1);"
+        android:text="System.out.println(&quot;The value of var1 is: &quot; + var1);"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/exaOuterStrings" />
+        app:layout_constraintBottom_toTopOf="@id/exaEndStrings"/>
 
     <TextView
         android:id="@+id/exaOutputTitleStrings"

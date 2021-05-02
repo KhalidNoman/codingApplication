@@ -26,7 +26,7 @@ public class examplesMenu extends AppCompatActivity {
 
         btnObjectsE = (Button) findViewById(R.id.btnObjectsE);
         btnObjectsE.setOnClickListener((view) -> {
-            Intent intent = new Intent(examplesMenu.this, examplesPage.class);
+            Intent intent = new Intent(examplesMenu.this, examples_Strings.class);
             startActivity(intent);
         });
 

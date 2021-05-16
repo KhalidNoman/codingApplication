@@ -117,7 +117,7 @@ public class examples_Loops extends AppCompatActivity {
 
                         if(dragData.toString().equals("for")){
                             AlertDialog.Builder userAlert = new AlertDialog.Builder(examples_Loops.this);
-                            userAlert.setTitle("Create your loop!");
+                            userAlert.setTitle("For loop");
 
                             TextView tv=new TextView(examples_Loops.this);
                             tv.setTextSize(20);
@@ -127,10 +127,24 @@ public class examples_Loops extends AppCompatActivity {
                             LinearLayout conLayout = new LinearLayout(con);
                             conLayout.setOrientation(LinearLayout.VERTICAL);
 
+                            TextView lblSpace = new TextView(examples_Loops.this);
+                            lblSpace.setTextSize(20);
+                            conLayout.addView(lblSpace);
+
+                            TextView lblValue = new TextView(examples_Loops.this);
+                            lblValue.setText("Start from: ");
+                            lblValue.setTextSize(20);
+                            conLayout.addView(lblValue);
+
                             EditText valueHolder = new EditText(con);
                             valueHolder.setHint("Variable value");
                             valueHolder.setInputType(InputType.TYPE_NUMBER_FLAG_SIGNED | InputType.TYPE_CLASS_NUMBER);
                             conLayout.addView(valueHolder);
+
+                            TextView lblTill = new TextView(examples_Loops.this);
+                            lblTill.setText("End when value gets to: ");
+                            lblTill.setTextSize(20);
+                            conLayout.addView(lblTill);
 
                             EditText userCond = new EditText(con);
                             userCond.setHint("condition");
@@ -165,7 +179,7 @@ public class examples_Loops extends AppCompatActivity {
                             userAlert.show();
                         }else if(dragData.toString().equals("while")){
                             AlertDialog.Builder userAlert = new AlertDialog.Builder(examples_Loops.this);
-                            userAlert.setTitle("Create your loop!");
+                            userAlert.setTitle("While loop");
 
                             TextView tv=new TextView(examples_Loops.this);
                             tv.setTextSize(20);
@@ -175,10 +189,24 @@ public class examples_Loops extends AppCompatActivity {
                             LinearLayout conLayout = new LinearLayout(con);
                             conLayout.setOrientation(LinearLayout.VERTICAL);
 
+                            TextView lblSpace = new TextView(examples_Loops.this);
+                            lblSpace.setTextSize(20);
+                            conLayout.addView(lblSpace);
+
+                            TextView lblValue = new TextView(examples_Loops.this);
+                            lblValue.setText("Starting value: ");
+                            lblValue.setTextSize(20);
+                            conLayout.addView(lblValue);
+
                             EditText valueHolder = new EditText(con);
                             valueHolder.setHint("Variable value");
                             valueHolder.setInputType(InputType.TYPE_NUMBER_FLAG_SIGNED | InputType.TYPE_CLASS_NUMBER);
                             conLayout.addView(valueHolder);
+
+                            TextView lblTill = new TextView(examples_Loops.this);
+                            lblTill.setText("Double value till it gets to: ");
+                            lblTill.setTextSize(20);
+                            conLayout.addView(lblTill);
 
                             EditText userCond = new EditText(con);
                             userCond.setHint("condition");
@@ -214,7 +242,7 @@ public class examples_Loops extends AppCompatActivity {
 
                         }else if(dragData.toString().equals("do")){
                             AlertDialog.Builder userAlert = new AlertDialog.Builder(examples_Loops.this);
-                            userAlert.setTitle("Create your loop!");
+                            userAlert.setTitle("Do while loop");
 
                             TextView tv=new TextView(examples_Loops.this);
                             tv.setTextSize(20);
@@ -224,10 +252,24 @@ public class examples_Loops extends AppCompatActivity {
                             LinearLayout conLayout = new LinearLayout(con);
                             conLayout.setOrientation(LinearLayout.VERTICAL);
 
+                            TextView lblSpace = new TextView(examples_Loops.this);
+                            lblSpace.setTextSize(20);
+                            conLayout.addView(lblSpace);
+
+                            TextView lblValue = new TextView(examples_Loops.this);
+                            lblValue.setText("Starting value: ");
+                            lblValue.setTextSize(20);
+                            conLayout.addView(lblValue);
+
                             EditText valueHolder = new EditText(con);
                             valueHolder.setHint("Variable value");
                             valueHolder.setInputType(InputType.TYPE_NUMBER_FLAG_SIGNED | InputType.TYPE_CLASS_NUMBER);
                             conLayout.addView(valueHolder);
+
+                            TextView lblTill = new TextView(examples_Loops.this);
+                            lblTill.setText("Divide number by till it gets to: ");
+                            lblTill.setTextSize(20);
+                            conLayout.addView(lblTill);
 
                             EditText userCond = new EditText(con);
                             userCond.setHint("condition");

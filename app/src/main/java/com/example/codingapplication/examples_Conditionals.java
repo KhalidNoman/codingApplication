@@ -172,16 +172,30 @@ public class examples_Conditionals extends AppCompatActivity {
                             hasIf = true;
 
                             AlertDialog.Builder userAlert = new AlertDialog.Builder(examples_Conditionals.this);
-                            userAlert.setTitle("Create your conditional!");
+                            userAlert.setTitle("If");
 
                             Context con = examples_Conditionals.this;
                             LinearLayout conLayout = new LinearLayout(con);
                             conLayout.setOrientation(LinearLayout.VERTICAL);
 
+                            TextView lblSpace = new TextView(examples_Conditionals.this);
+                            lblSpace.setTextSize(20);
+                            conLayout.addView(lblSpace);
+
+                            TextView lblValue = new TextView(examples_Conditionals.this);
+                            lblValue.setText("Value to check: ");
+                            lblValue.setTextSize(20);
+                            conLayout.addView(lblValue);
+
                             EditText valueHolder = new EditText(con);
                             valueHolder.setHint("Variable value");
                             valueHolder.setInputType(InputType.TYPE_NUMBER_FLAG_SIGNED | InputType.TYPE_CLASS_NUMBER);
                             conLayout.addView(valueHolder);
+
+                            TextView lblTill = new TextView(examples_Conditionals.this);
+                            lblTill.setText("Check if value is greater than: ");
+                            lblTill.setTextSize(20);
+                            conLayout.addView(lblTill);
 
                             EditText ifPart = new EditText(con);
                             ifPart.setHint("if condition");
@@ -218,11 +232,20 @@ public class examples_Conditionals extends AppCompatActivity {
                         } else if(dragData.toString().equals("else if")){
                             if(hasIf) {
                                 AlertDialog.Builder userAlert = new AlertDialog.Builder(examples_Conditionals.this);
-                                userAlert.setTitle("Create your conditional!");
+                                userAlert.setTitle("Else if");
 
                                 Context con = examples_Conditionals.this;
                                 LinearLayout conLayout = new LinearLayout(con);
                                 conLayout.setOrientation(LinearLayout.VERTICAL);
+
+                                TextView lblSpace = new TextView(examples_Conditionals.this);
+                                lblSpace.setTextSize(20);
+                                conLayout.addView(lblSpace);
+
+                                TextView lblValue = new TextView(examples_Conditionals.this);
+                                lblValue.setText("Check if value is less than: ");
+                                lblValue.setTextSize(20);
+                                conLayout.addView(lblValue);
 
                                 EditText elseIfPart = new EditText(con);
                                 elseIfPart.setHint("else if condition");
@@ -257,7 +280,7 @@ public class examples_Conditionals extends AppCompatActivity {
                             if(hasIf) {
                                 hasElse = true;
                                 AlertDialog.Builder userAlert = new AlertDialog.Builder(examples_Conditionals.this);
-                                userAlert.setTitle("Create your conditional!");
+                                userAlert.setTitle("Else");
 
                                 TextView tv = new TextView(examples_Conditionals.this);
                                 tv.setText(dragData.toString().concat("{\n" + "\t\tSystem.out.println(\"else satisfied\");\n}"));
@@ -272,11 +295,20 @@ public class examples_Conditionals extends AppCompatActivity {
                             hasSwitch = true;
 
                             AlertDialog.Builder userAlert = new AlertDialog.Builder(examples_Conditionals.this);
-                            userAlert.setTitle("Create your conditional!");
+                            userAlert.setTitle("Switch");
 
                             Context con = examples_Conditionals.this;
                             LinearLayout conLayout = new LinearLayout(con);
                             conLayout.setOrientation(LinearLayout.VERTICAL);
+
+                            TextView lblSpace = new TextView(examples_Conditionals.this);
+                            lblSpace.setTextSize(20);
+                            conLayout.addView(lblSpace);
+
+                            TextView lblValue = new TextView(examples_Conditionals.this);
+                            lblValue.setText("Value to check: ");
+                            lblValue.setTextSize(20);
+                            conLayout.addView(lblValue);
 
                             EditText valueHolder = new EditText(con);
                             valueHolder.setHint("Variable value");
@@ -314,12 +346,22 @@ public class examples_Conditionals extends AppCompatActivity {
                             if(hasSwitch) {
                                 cases[0]++;
                                 AlertDialog.Builder userAlert = new AlertDialog.Builder(examples_Conditionals.this);
-                                userAlert.setTitle("Create your conditional!");
+                                userAlert.setTitle("Case");
 
 
                                 Context con = examples_Conditionals.this;
                                 LinearLayout conLayout = new LinearLayout(con);
                                 conLayout.setOrientation(LinearLayout.VERTICAL);
+
+                                TextView lblSpace = new TextView(examples_Conditionals.this);
+                                lblSpace.setTextSize(20);
+                                conLayout.addView(lblSpace);
+
+                                TextView lblValue = new TextView(examples_Conditionals.this);
+                                lblValue.setText("Check if value is equal to: ");
+                                lblValue.setTextSize(20);
+                                conLayout.addView(lblValue);
+
 
                                 EditText valueHolder = new EditText(con);
                                 valueHolder.setHint("Case value");

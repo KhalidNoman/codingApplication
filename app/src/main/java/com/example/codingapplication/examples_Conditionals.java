@@ -158,14 +158,14 @@ public class examples_Conditionals extends AppCompatActivity {
                         view.invalidate();
                         return true;
                     case DragEvent.ACTION_DRAG_ENDED:
-                        view.setBackgroundColor(Color.WHITE);
+                        view.setBackgroundColor(Color.GRAY);
                         view.invalidate();
                         return true;
                     case DragEvent.ACTION_DROP:
                         ClipData.Item item = dragEvent.getClipData().getItemAt(0);
                         CharSequence dragData = item.getText();
                         Toast.makeText(examples_Conditionals.this, dragData.toString(), Toast.LENGTH_LONG).show();
-                        view.setBackgroundColor(Color.WHITE);
+                        view.setBackgroundColor(Color.GRAY);
 
                         //Ifs 
                         if(dragData.toString().equals("if")) {

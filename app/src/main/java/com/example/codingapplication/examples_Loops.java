@@ -106,14 +106,14 @@ public class examples_Loops extends AppCompatActivity {
                         view.invalidate();
                         return true;
                     case DragEvent.ACTION_DRAG_ENDED:
-                        view.setBackgroundColor(Color.WHITE);
+                        view.setBackgroundColor(Color.GRAY);
                         view.invalidate();
                         return true;
                     case DragEvent.ACTION_DROP:
                         ClipData.Item item = dragEvent.getClipData().getItemAt(0);
                         CharSequence dragData = item.getText();
                         Toast.makeText(examples_Loops.this, dragData.toString(), Toast.LENGTH_LONG).show();
-                        view.setBackgroundColor(Color.WHITE);
+                        view.setBackgroundColor(Color.GRAY);
 
                         if(dragData.toString().equals("for")){
                             AlertDialog.Builder userAlert = new AlertDialog.Builder(examples_Loops.this);
